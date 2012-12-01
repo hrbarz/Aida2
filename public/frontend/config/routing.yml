@@ -1,0 +1,35 @@
+hola_mundo:
+   path: /home/{name}
+   controller: home:index
+   security:
+      name: string  
+      
+hola_numero:
+	path: /home/redirect
+	controller: home:redirect
+   
+blog:
+   path: /blog
+   controller: blog:fetch
+   
+blog_post:
+   path: /blog/post/{id}
+   controller: blog:show
+   security:
+      id: int
+      
+login:
+	path: /login
+	controller: login:index
+	
+posts:
+	path: /posts
+	controller: post:fetch
+	
+post:
+	path: /post/{id}
+	controller: post:edit
+	
+post_create:
+	path: /post/create
+	controller: post:create

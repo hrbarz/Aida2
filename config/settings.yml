@@ -1,0 +1,10 @@
+apps:
+	backend:
+		domain: back.aida.dev
+		
+	frontend:
+		domain: aida.dev
+		
+languages: 
+	codes: [ES, EN, DE]
+	default: ES

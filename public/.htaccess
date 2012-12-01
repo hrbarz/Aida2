@@ -1,0 +1,60 @@
+################## CONFIGURACIONES #########################
+
+#AddDefaultCharset UTF-8
+
+options +Indexes
+Options +FollowSymlinks
+RewriteEngine on
+RewriteBase /
+
+Options All -Indexes
+
+
+# QUITAR WWW
+RewriteCond %{HTTP_HOST} ^www.(.)$
+RewriteRule ^(.)$ http://%1/$1 [R=301,L]
+
+################## ERRORES #################################
+ErrorDocument 404 /error
+
+################# PARCHES  ###########################
+
+RewriteCond %{HTTP_USER_AGENT} ^.*internal\ dummy\ connection.*$ [NC]
+RewriteRule ^/$ /apache.html [L]
+
+################# URL AMIGABLES ###########################
+
+# CONDICIONES
+RewriteCond %{REQUEST_FILENAME}       !-f
+RewriteCond %{REQUEST_FILENAME}       !-d
+RewriteCond %{REQUEST_URL} !^/content/
+RewriteCond %{REQUEST_URL} !^/upload/
+RewriteCond %{REQUEST_URI} !^/favicon.ico
+RewriteCond %{REQUEST_URI} !^favicon.ico
+
+RewriteRule ^(.*) index.php?p=$1
+
+################# CACHE IMAGENES  ###########################
+
+#FileETag INode MTime Size
+
+#<IfModule mod_deflate.c>
+# <FilesMatch ".(js|css)$">
+# SetOutputFilter DEFLATE
+# Header set Cache-Control "max-age=2419200, public"
+# </FilesMatch>
+#</IfModule>
+
+
+
+#<IfModule mod_expires.c>
+# ExpiresActive On
+# ExpiresByType text/html "access plus 20 seconds"
+# ExpiresByType image/gif "access plus 2 months"
+# ExpiresByType image/jpeg "access plus 2 months"
+# ExpiresByType image/png "access plus 2 months"
+# ExpiresByType text/css "access plus 2 months"
+# ExpiresByType image/ico "access plus 2 months"
+# ExpiresByType text/javascript "access plus 2 months"
+# ExpiresByType application/x-javascript "access plus 2 months"
+#</IfModule>

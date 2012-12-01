@@ -1,0 +1,13 @@
+project:
+	name: demo
+	email: xpromx@gmail.com
+	security: true
+	error: true
+	
+database:
+	local: true
+	
+memcache:
+	host: localhost
+	port: 11211
+	
