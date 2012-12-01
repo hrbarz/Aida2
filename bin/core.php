@@ -95,6 +95,9 @@
 			// languages
 			$this->languages();
 			
+			// exceptions
+			$this->exceptions();
+			
 		}
 		
 		
@@ -382,6 +385,8 @@
 		{
 			global $memcache;
 			
+			if( !function_exists('memcache_connect') ){ return false; }
+			
 			if($this->settings['memcache'])
 			{
 				$memcache= new memcache();
@@ -440,6 +445,14 @@
 			$lang->langs = $this->config['languages']['codes'];
 			$lang->run();
 			
+		}
+		
+		/**
+		* exceptions : load
+		**/
+		public function exceptions()
+		{
+			$e = new exceptions();
 		}
 				
 	}

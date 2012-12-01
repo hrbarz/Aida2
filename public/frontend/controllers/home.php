@@ -6,8 +6,7 @@
 		{
 			$this->file = 'home.html';
 						
-			$this->tpl->set('name', $this->page['name']);
-						
+			$this->tpl->set('name', $this->page['name']);						
 		}
 		
 		public function redirect()

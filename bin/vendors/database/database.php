@@ -59,6 +59,7 @@ class database
 			$txt[] = $sql;
 			$txt[] = $error;
 			
+			_error_log_('sql', implode(' ------ ', $txt));
 			set_error_log( $txt , 2);
 			
 		}
