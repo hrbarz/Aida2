@@ -2,11 +2,12 @@
 
 	class homeController extends TController
 	{
+	
 		public function index()
 		{
 			$this->file = 'home.html';
 						
-			$this->tpl->set('name', $this->page['name']);						
+			$this->tpl->set('name', $this->page['name']);
 		}
 		
 		public function redirect()

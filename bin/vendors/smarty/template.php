@@ -27,7 +27,7 @@ class template extends Smarty
 	public function getFolders()
 	{
 
-		$dir = opendir( $this->template . '../../assets/' ); 
+		$dir = opendir( $this->template . '../assets/' ); 
 		
 		while ($file = readdir($dir))
 		{
@@ -66,8 +66,13 @@ class template extends Smarty
 	# cargar plantilla
 	public function load( $file )
 	{
-	
-		$html  = $this->fetch( $this->template . $file );
+		
+		if( strpos($file,'/system/') === false  )
+		{
+			$file = $this->template . $file;
+		}
+		
+		$html  = $this->fetch( $file );
 		
 		// file no exists
 		if( strpos( strip_tags( $html ), 'Smarty error: unable to read resource') !== false )

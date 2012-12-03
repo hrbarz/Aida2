@@ -114,20 +114,45 @@
 			$method = $this->method;
 			$controller = $this->controller . 'Controller';
 			
-			if( !file_exists( $_PATH .'/'. $this->controller . '.php'  )){ set_error_log("File don't exists : <strong> ". _PAGES .'/'. $this->controller .'.php' ." </strong>", 1); }
-			require_once( $_PATH .'/'. $this->controller . '.php' );
+			if(!$this->system)
+			{
+				terminal('start: '. $_GET['p'], 1,1 );
+				if( !file_exists( $_PATH .'/'. $this->controller . '.php'  )){ set_error_log("File don't exists : <strong> ". _PAGES .'/'. $this->controller .'.php' ." </strong>", 1); }
+				require_once( $_PATH .'/'. $this->controller . '.php' );
+			}
+			
 			if( !class_exists( $controller ) ){ set_error_log("class don't exists : <strong> ". $controller ." </strong>", 1); }
 
-						
+			// controller:instance			
 			$c = new $controller();
 			$c->$method();
-
+			
+			// tempalte:include
 			if( $c->file )
 			{
-				if( !file_exists( $_VIEW .'/'. $c->file ) ){ set_error_log("File don't exists : <strong> ". $c->file ." </strong>", 1); }
-
+				
+				if($this->system)
+				{
+					if( !file_exists( $c->file ) ){ set_error_log("File don't exists : <strong> ". $c->file ." </strong>", 1); }
+				}
+				else
+				{
+					$_TIME = terminal( 'end: '. $_GET['p'] );
+					
+					if( !file_exists( $_VIEW .'/'. $c->file ) ){ set_error_log("File don't exists : <strong> ". $c->file ." </strong>", 1); }
+				}
+				
 				$this->tpl->load( $c->file );
 			}
+			
+			// console:bar
+			if( $this->config['local'] == $_SERVER['REMOTE_ADDR'] AND $this->system == false )
+			{
+				$html = file_get_contents( dirname(__FILE__) .  _VENDORS . '/system/views/bar.html' );
+				$html = str_replace('#time#', $_TIME, $html);
+				
+				echo $html;
+			} 
 			
 		}
 		
@@ -153,6 +178,16 @@
 				
 				redirect( $_GET['p'] );
 				
+			}
+
+			// system controller
+			if( $_PAGE[0] == '@' )
+			{
+				$this->controller = '_'.$_PAGE[1];
+				$this->method = 'run';
+				$this->system = true;
+				
+				return false;				
 			}
 			
 			$links = $this->settings['routings'];
@@ -283,6 +318,8 @@
 					$this->settings = $this->config( _APP . _CONFIG . '/settings.yml' );
 					$this->settings['routings'] = $this->config( _APP . _CONFIG . '/routing.yml' );
 					$this->databases = $this->config( dirname(__FILE__) . '/..' . _CONFIG . '/database.yml' );
+					
+					$this->library( dirname(__FILE__) . '/../app/' .  _LIBS );
 					
 					// database:connect default
 					if( $this->settings['database'] )

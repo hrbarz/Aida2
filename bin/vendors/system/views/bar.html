@@ -1,0 +1,51 @@
+<style>
+	body { margin:0; padding:0; }
+	.aida_bar { border-top:2px #666 solid; width:100%; bottom:0; height:35px; position:fixed; background:#F5F5F5; font-family:Arial; font-size:14px; }
+	.aida_bar ul { list-style:none; margin:0; padding:0; }
+	.aida_bar ul li { float:left; border-right:1px #999 solid; padding:10px; margin:0; }	
+	.aida_bar ul li a { text-decoration:none; color:#666; }
+	.aida_bar_active { background: #666; }
+	.aida_bar ul li.aida_bar_active a { color:#FFF; }
+	.aida_popup { bottom:35px; position:absolute; height:500px; background:#999; width:100%; border-top:1px #999 solid; display:none; }
+</style>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>
+	function aida_popup( code )
+	{
+		if( $('#aida_' + code).attr('class') == 'aida_bar_active' )
+		{
+			$('.aida_bar ul li').removeClass('aida_bar_active');
+			$('.aida_popup').css('display','none');
+
+			return false;
+		}
+			
+		$('.aida_bar ul li').removeClass('aida_bar_active');
+		$('#aida_'+code).addClass('aida_bar_active');
+		$('.aida_popup').css('display','block');
+		$('#aida_iframe').attr('src','/@/' + code);
+		
+	}
+</script>
+
+
+
+<div class="aida_popup">
+	<iframe id="aida_iframe" src="#" width="100%" height="500px;"></iframe>
+</div>
+
+<div class="aida_bar">
+	
+	<ul>
+		<li id="aida_terminal"><a href="#" onclick="aida_popup('terminal');"> <img src="http://cdn1.iconfinder.com/data/icons/silk2/application_osx_terminal.png" align="absmiddle" /> Terminal</a></li>
+		<li id="aida_logs"><a href="#" onclick="aida_popup('logs');"> <img src="http://cdn3.iconfinder.com/data/icons/fugue/icon/blogs-stack.png" align="absmiddle" /> Logs</a></li>
+		<li id="aida_security" style="display:none"><a href="#" onclick="aida_popup('security');">Security</a></li>
+		<li id="aida_tests" style="display:none"><a href="#" onclick="aida_popup('tests');">Tests</a></li>
+		
+		<li style="float:right; border-left:1px #999 solid;"><a href="#"> <img src="http://cdn2.iconfinder.com/data/icons/oxygen/16x16/actions/chronometer.png" align="absmiddle" /> Tiempo: #time#</a></li>
+		
+	</ul>
+	
+</div>

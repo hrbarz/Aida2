@@ -8,3 +8,5 @@ apps:
 languages: 
 	codes: [ES, EN, DE]
 	default: ES
+
+local: 127.0.0.1
