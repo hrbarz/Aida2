@@ -6,7 +6,7 @@
 	.aida_bar ul li a { text-decoration:none; color:#666; }
 	.aida_bar_active { background: #666; }
 	.aida_bar ul li.aida_bar_active a { color:#FFF; }
-	.aida_popup { bottom:35px; position:absolute; height:500px; background:#999; width:100%; border-top:1px #999 solid; display:none; }
+	.aida_popup { bottom:35px; position:absolute; height:500px; background:#F5F5F5; width:100%; border-top:1px #999 solid; display:none; text-align:center; }
 </style>
 
 
@@ -33,7 +33,7 @@
 
 
 <div class="aida_popup">
-	<iframe id="aida_iframe" src="#" width="100%" height="500px;"></iframe>
+	<iframe id="aida_iframe" src="#" width="99%" height="500px;" style="border:0"></iframe>
 </div>
 
 <div class="aida_bar">
@@ -41,6 +41,7 @@
 	<ul>
 		<li id="aida_terminal"><a href="#" onclick="aida_popup('terminal');"> <img src="http://cdn1.iconfinder.com/data/icons/silk2/application_osx_terminal.png" align="absmiddle" /> Terminal</a></li>
 		<li id="aida_logs"><a href="#" onclick="aida_popup('logs');"> <img src="http://cdn3.iconfinder.com/data/icons/fugue/icon/blogs-stack.png" align="absmiddle" /> Logs</a></li>
+		<li id="aida_languages" ><a href="#" onclick="aida_popup('languages');"> <img src="http://cdn1.iconfinder.com/data/icons/famfamfam_flag_icons/us.png" align="absmiddle" /> Language</a></li>
 		<li id="aida_security" style="display:none"><a href="#" onclick="aida_popup('security');">Security</a></li>
 		<li id="aida_tests" style="display:none"><a href="#" onclick="aida_popup('tests');">Tests</a></li>
 		

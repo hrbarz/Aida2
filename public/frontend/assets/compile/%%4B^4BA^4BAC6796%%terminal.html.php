@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.20, created on 2012-12-02 10:47:33
+<?php /* Smarty version 2.6.20, created on 2012-12-15 20:06:16
          compiled from /Users/rodrigoramirez/Sites/git/Aida2/bin/vendors/system/views/terminal.html */ ?>
 <?php echo '
 <style>

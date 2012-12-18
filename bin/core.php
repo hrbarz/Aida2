@@ -168,15 +168,16 @@
 			// lang detect
 			if( $_PAGE[0] == 'lang'  )
 			{
-
 				if( in_array($_PAGE[1], $this->config['languages']['codes']) )
 				{
 					locate( $_PAGE[1] );
 				}
 				
+				$_GET['p'] = str_replace( $_PAGE[0].'/'.$_PAGE[1].'/','', $_GET['p']);
 				$_GET['p'] = str_replace( $_PAGE[0].'/'.$_PAGE[1],'', $_GET['p']);
 				
-				redirect( $_GET['p'] );
+				
+				redirect( '/'.$_GET['p'] );
 				
 			}
 

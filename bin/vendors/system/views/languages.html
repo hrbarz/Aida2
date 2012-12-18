@@ -1,0 +1,74 @@
+{literal}
+<style>
+body
+{
+	background: #f5f5f5;
+	color:#666;
+	font-size: 12px;
+	margin: 0;
+	padding: 20px;
+	font-family: Arial;
+}
+
+hr { border: 1px #FFF solid; }
+
+span { color: yellow; cursor: pointer; }
+
+input { font-size: 12px; padding: 5px; }
+
+.destacar { color: #000 !important; font-weight:bold; }
+
+
+.error { color: red; }
+
+.table_head { background:#999; }
+.table_head td { color:#FFF }
+
+.table_line td { border-bottom:1px #CCC solid; }
+
+table tr td { padding:5px; font-size:12px; }
+
+</style>
+{/literal}
+
+<html>
+<title>LANGUAGES</title>
+<body>
+
+{foreach from=$langs item=lang key=num}
+
+<input type="button" value="{$lang.name}" onclick="document.location.href='/@/languages&lang={$lang.name}';" style="border:1px #999 solid; {if $lang.name eq $lang_selected}background:#999;color:#FFF;{else}background:#CCC;color:#666;{/if}" />
+
+
+{/foreach}
+
+
+<input type="button" value="UPDATE" onclick="document.languages.submit();" style="border:1px #999 solid; color:#FFF; background:#000; float:right" />
+
+
+<form method="post" name="languages">
+<table width="100%">
+	
+	<tr class="table_head"> 
+		<td width="%"> text </td>
+		<td width="%"> translation </td>
+	</tr>
+
+
+{foreach from=$results item=r key=num}
+
+	<tr class="table_line" {if $num%2 == 0} style="background:#f3f3f3" {/if} > 
+		
+		<td width="%"> {$r.code} </td>
+		<td width="%"> <input type="text" name="txt_{$r.id}" value="{$r[$lang_field]}" style="width:99%" /> </td>
+		
+	</tr>
+
+
+{/foreach}
+
+</table>
+</form>
+
+</body>
+</html>

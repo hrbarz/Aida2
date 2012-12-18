@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.20, created on 2012-12-02 11:10:18
+<?php /* Smarty version 2.6.20, created on 2012-12-15 20:10:24
          compiled from /Users/rodrigoramirez/Sites/git/Aida2/bin/vendors/system/views/logs.html */ ?>
 <?php echo '
 <style>
@@ -37,6 +37,9 @@ table tr td { padding:5px; font-size:12px; }
 <html>
 <title>TERMINAL</title>
 <body>
+
+<input type="button" value="FLUSH" onclick="document.location.href='/@/logs&flush=1';" style="border:1px #999 solid; color:#FFF; background:#000; float:right" />
+
 
 
 <table width="100%">

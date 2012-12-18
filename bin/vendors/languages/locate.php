@@ -5,9 +5,7 @@
 		if(!$lang){ $lang = _LANGUAGE; }
 		
 		setcookie('lang', $lang, time() + 3153600, '/');
-		
-		echo $lang;
-					
+							
 	}
 	
 	function __( $txt, $lang=false )

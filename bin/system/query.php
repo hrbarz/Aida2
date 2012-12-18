@@ -108,6 +108,14 @@
 				return $this->sql;
 			}
 			
+			if(!$this->limit)
+			{
+				$r = $this->db( $this->idb )->fetch( $this->sql );
+				$this->compile( $r, $this->type );
+				
+				return $this->data;
+			}
+			
 			// instanciamos paginador
 			$paginador = new paginator();
 			$paginador->sql = $sql;
